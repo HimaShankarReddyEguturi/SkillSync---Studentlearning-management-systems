@@ -4,11 +4,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(bodyParser.json()); // For JSON parsing
 
-// MySQL Connection
+// Serve static files (frontend)
+app.use(express.static(path.join(__dirname, '../Exam')));
+
+// MySQL connection
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -24,32 +26,38 @@ db.connect((err) => {
     console.log('Connected to MySQL!');
 });
 
-// Serve login page
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'login_page.html'));
+// Serve the dashboard
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Exam', 'dashboard.html'));
 });
 
-// Handle login
-app.post('/login', (req, res) => {
-    const { email, name } = req.body;
+// Handle assessment submission
+app.post('/submit-assessment', (req, res) => {
+    const { email, score } = req.body;
 
-    const query = 'SELECT * FROM users WHERE email = ? AND name = ?';
-    db.query(query, [email, name], (err, results) => {
+    const query = 'INSERT INTO assessments (email, score) VALUES (?, ?)';
+    db.query(query, [email, score], (err, result) => {
         if (err) {
-            console.error('Database query error:', err);
+            console.error('Error saving assessment:', err);
             return res.status(500).send('Database error');
         }
-
-        if (results.length > 0) {
-            console.log('Login successful:', results[0]);
-            res.redirect('Dashboard/dashboard.html'); // Redirect to a dashboard page after successful login
-        } else {
-            res.send('<h2>Invalid credentials. Please try again.</h2>');
-        }
+        res.send({ message: 'Assessment submitted successfully!' });
     });
 });
 
-// Start the server
+// Fetch assessment analytics
+app.get('/assessment-data', (req, res) => {
+    const query = 'SELECT email, score FROM assessments';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            return res.status(500).send('Database error');
+        }
+        res.json(results);
+    });
+});
+
+// Start server
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

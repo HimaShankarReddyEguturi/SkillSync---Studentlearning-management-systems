@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Welcome to Your Dashboard</h1>
+
+    <!-- Assessment Form -->
+    <h2>Take Assessment</h2>
+    <form id="assessmentForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required><br><br>
+
+        <label for="score">Score (out of 100):</label>
+        <input type="number" id="score" min="0" max="100" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Button to View Analytics -->
+    <h2>Analytics</h2>
+    <button onclick="loadAnalytics()">View Performance Analytics</button>
+    <canvas id="assessmentChart"></canvas>
+
+    <script>
+        // Submit Assessment
+        document.getElementById("assessmentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const score = document.getElementById("score").value;
+
+            fetch("/submit-assessment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, score })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error("Error:", error));
+        });
+
+        // Load Analytics
+        function loadAnalytics() {
+            fetch("/assessment-data")
+                .then(response => response.json())
+                .then(data => {
+                    const emails = data.map(d => d.email);
+                    const scores = data.map(d => d.score);
+
+                    // Generate Chart
+                    new Chart(document.getElementById("assessmentChart"), {
+                        type: "bar",
+                        data: {
+                            labels: emails,
+                            datasets: [{
+                                label: "Assessment Scores",
+                                data: scores,
+                                backgroundColor: "rgba(54, 162, 235, 0.6)",
+                                borderColor: "rgba(54, 162, 235, 1)",
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: { beginAtZero: true, max: 100 }
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.error("Error fetching analytics:", error));
+        }
+    </script>
+</body>
+</html>
