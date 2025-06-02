@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>| Dashboard |</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <style>
+    .dropdown-container {
+      margin: 20px;
+      text-align: center;
+    }
+    .subjects-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .card {
+      background: #f3f3f3;
+      padding: 15px;
+      border-radius: 10px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+          <span class="nav-item">DashBoard</span>
+        </a></li>
+        
+        <!-- New Dropdown for Selecting Semester -->
+        <li class="dropdown-container">
+          <label for="semesterSelect"><b>Select Semester:</b></label>
+          <select id="semesterSelect">
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+            <option value="7">Semester 7</option>
+          </select>
+        </li>
+
+        <li><a href="syllabus.html">
+          <i class="fas fa-cog"></i>
+          <span class="nav-item">Syllabus</span>
+        </a></li>
+        
+      </ul>
+    </nav>
+
+    <section class="main">
+      <div class="main-top">
+        <h1>Subjects</h1>
+      </div>
+
+      <div class="subjects-container" id="subjectsContainer">
+        <!-- Subjects will be updated here dynamically -->
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Define subjects for each semester
+    const subjects = {
+      1: ["Mathematics 1", "Physics", "Programming Basics"],
+      2: ["Mathematics 2", "Chemistry", "C Programming"],
+      3: ["Data Structures", "OOP in Java", "Digital Logic"],
+      4: ["Operating Systems", "DBMS", "Computer Networks"],
+      5: ["AI & ML", "Web Development", "Computer Graphics"],
+      6: ["Data Science", "Cyber Security", "Cloud Computing"],
+      7: ["Big Data", "IoT", "Deep Learning"]
+    };
+
+    function updateSubjects() {
+      const sem = document.getElementById("semesterSelect").value;
+      const subjectsContainer = document.getElementById("subjectsContainer");
+
+      subjectsContainer.innerHTML = ""; // Clear existing subjects
+
+      subjects[sem].forEach(subject => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `<h3>${subject}</h3>`;
+        subjectsContainer.appendChild(card);
+      });
+    }
+
+    // Load subjects on dropdown change
+    document.getElementById("semesterSelect").addEventListener("change", updateSubjects);
+
+    // Load default subjects (Semester 1) on page load
+    window.onload = updateSubjects;
+  </script>
+
+</body>
+</html>

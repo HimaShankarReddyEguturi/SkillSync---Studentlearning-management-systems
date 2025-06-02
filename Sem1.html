@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>| Sem 1 |</title>
+    <meta lang="english">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <style>
+        *{
+            background-color: aliceblue;
+        }
+        .te {
+            text-align: center;
+            width: 100vw;
+        }
+
+        .w {
+            width: 100px;
+
+        }
+
+        .a {
+            margin-top: 20px;
+            width: 100vw;
+            background-color: #bad7fc;
+        }
+
+        .b {
+            height: 120px;
+            width:100vw;
+            background-image: url("https://www.skillsync.com/img/skillsync-logo.c68345a6.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        .c {
+            width: 60vw;
+            height: 20vh;
+        }
+
+        .bt {
+            background-color: #7ea3c2;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        .sos {
+            font-size: 15px;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .t {
+            width: 100px;
+            font-weight: bold;
+        }
+
+        .he {
+            font-size: 10px;
+        }
+
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgb(135, 187, 243);
+        }
+
+        /* Media query for mobile devices */
+        @media screen and (max-width: 600px) {
+            .x {
+                font-size: 30px;
+            }
+
+            table {
+                font-size: 10px;
+            }
+
+            th,
+            td {
+                padding: 5px;
+            }
+            
+        }
+        .assigned{
+           
+               padding: 10px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        
+    </style>
+</head>
+
+<body>
+    <div id="svec">
+        <div class="b"></div>
+        
+        <button id="jar1" class="a"><h3>Time table Sem 1 </h3></button>
+        <div id="container1">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>9:30 - 10:30</th>
+                    <th>10:30 - 11:20</th>
+                    <th>11:20 - 12:10</th>
+                    <th>12:10 - 1:00</th>
+                    <th>2:00 - 2:50</th>
+                    <th>2:50 - 3:40</th>
+                    <th>3:40 - 4:30</th>
+                </tr>
+                <tr>
+                    <th>Monday</th>
+                    <td>C</td>
+                    <td>BEEE</td>
+                    <td>CHE</td>
+                    <td>ES</td>
+                    <td>M1</td>
+                    <td>C</td>
+                    <td>CHE</td>
+                </tr>
+                <tr>
+                    <th>Tuesday</th>
+                    <td>M1</td>
+                    <td>CHE LAB</td>
+                    <td>CHE LAB</td>
+                    <td>CHE LAB</td>
+                    <td>BEEE</td>
+                    <td>C</td>
+                    <td>CHE</td>
+                </tr>
+                <tr>
+                    <th>Wednesday</th>
+                    <td>CHE</td>
+                    <td>M1</td>
+                    <td>BEEE</td>
+                    <td>BEEE</td>
+                    <td>M1</td>
+                    <td>ES</td>
+                    <td>CHE</td>
+                </tr>
+                <tr>
+                    <th>Thursday</th>
+                    <td>BEEE</td>
+                    <td>C</td>
+                    <td>M1</td>
+                    <td>CHE</td>
+                    <td>C LAB</td>
+                    <td>C LAB</td>
+                    <td>C LAB</td>
+                </tr>
+                <tr>
+                    <th>Friday</th>
+                    <td>M1</td>
+                    <td>M1</td>
+                    <td>C</td>
+                    <td>BEEE</td>
+                    <td>ES</td>
+                    <td>CHE</td>
+                    <td>CHE</td>
+                </tr>
+                <tr>
+                    <th>Saturday</th>
+                    <td>ES</td>
+                    <td>M1</td>
+                    <td>BEEE</td>
+                    <td>CHE</td>
+                    <td>BEEE LAB</td>
+                    <td>BEEE LAB</td>
+                    <td>BEEE LAB</td>
+                </tr>
+            </table>
+        </div>
+        
+            <h3 style="text-align: center;">Assigned Faculty</h3>
+            
+            <table class="assigned">
+        <tr>
+            <th>Subject</th>
+            <th>Faculty Name</th>
+        </tr> 
+        <tr> 
+            <td>M1</td>
+            <td>B.S.K.Chaitanya Sir</td>
+            
+        </tr>
+        <tr> 
+            <td>C</td>
+            <td>Vijayanadaratnam Sir</td>
+            
+        </tr>
+        <tr> 
+            <td>CHE</td>
+            <td>B.Subba Rao Sir</td>
+            
+        </tr>
+        <tr> 
+            <td>BEEE</td>
+            <td>D.Sowjanya Mam</td>
+            
+        </tr>
+        <tr> 
+            <td>ES</td>
+            <td>M.Geetha Lalitha Mam</td>
+            
+        </tr>
+        </table>
+    </div>
+        
+
+</body>
+
+</html>
